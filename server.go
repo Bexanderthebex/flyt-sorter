@@ -22,10 +22,10 @@ func main() {
 	var activeSorter api.FlightSorter
 	algo := os.Getenv("SORTING_ALGORITHM")
 	switch algo {
-	case "degree":
-		activeSorter = sorter.DegreeCountingSort{}
-	default:
+	case "topological":
 		activeSorter = sorter.TopologicalSort{}
+	default:
+		activeSorter = sorter.DegreeCountingSort{}
 	}
 
 	flightHandler := &api.FlightHandler{Sorter: activeSorter}
