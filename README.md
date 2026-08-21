@@ -62,3 +62,30 @@ To run in docker:
 **Note** The program is meant to run in port 8080 of the host machine. If in any case the program errors out, it might be because there's other programs might be using that port. In that case, specify a different port by
 
 `make docker-run PORT=<desired_port>`
+
+### API Reference
+
+**Endpoint:** `POST /calculate`
+
+**Headers:**
+- `Content-Type: application/json`
+
+**Request Body:**
+A JSON array of flight segments, where each segment is a 2-element array of strings `["Source", "Destination"]`.
+```json
+[
+  ["ATL", "EWR"],
+  ["SFO", "ATL"]
+]
+```
+
+**Success Response (200 OK):**
+A JSON array containing the calculated starting airport and an array of all possible final destinations:
+```json
+[
+  "SFO",
+  [
+    "EWR"
+  ]
+]
+```
